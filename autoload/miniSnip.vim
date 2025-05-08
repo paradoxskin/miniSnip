@@ -24,9 +24,9 @@ function! miniSnip#trigger() abort
 
   let ret .= "\<Esc>:call ".s:sid."selectPlaceholder()\<CR>"
 
-  if pumvisible()
+  if pumvisible() || v:completed_item != {}
     call timer_start(50, {-> feedkeys(ret)})
-    return "\<C-y>"
+    return "\<esc>a"
   endif
 
   return ret
